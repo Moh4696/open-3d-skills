@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Install Open 3D Skills for every coding agent on this machine.
+# Install Open 3D Skills for every coding agent on this machine, without Node.
+# (With Node 22.20+, `npx skills add Moh4696/open-3d-skills` does the same.)
 #
 #   curl -fsSL https://raw.githubusercontent.com/Moh4696/open-3d-skills/main/install.sh | bash
 #

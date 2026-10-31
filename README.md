@@ -39,10 +39,18 @@ Every technique here was used to build a real site first, and every script was r
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Moh4696/open-3d-skills/main/install.sh | bash
+npx skills add Moh4696/open-3d-skills
 ```
 
-One command installs all eight skills for every coding agent it finds on your machine: Claude Code, Codex, Cursor, Gemini CLI and OpenCode (which also reads Claude Code's skills folder). It clones the repo to `~/.open-3d-skills` and links the skills from there, so running it again updates them. Start a new agent session afterwards.
+That installs with the [`npx skills`](https://github.com/vercel-labs/skills) CLI, the open installer for agent skills. It asks which of the eight skills you want, which agents to install them for (Claude Code, Codex, Cursor, Gemini CLI, OpenCode, Antigravity and dozens more) and whether they are for this project or every project. Start a new agent session afterwards.
+
+```bash
+npx skills add Moh4696/open-3d-skills -g -y                       # all skills, all your agents, every project, no questions
+npx skills add Moh4696/open-3d-skills --skill threejs-scene       # just one skill
+npx skills update                                                  # pull new versions later
+```
+
+`npx skills` needs Node 22.20 or newer.
 
 <details>
 <summary>Claude Code plugin</summary>
@@ -89,7 +97,13 @@ gemini extensions install https://github.com/Moh4696/open-3d-skills
 </details>
 
 <details>
-<summary>Other agents, one skill, or a copy instead of links</summary>
+<summary>Without Node: the shell installer</summary>
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Moh4696/open-3d-skills/main/install.sh | bash
+```
+
+It installs all eight skills for every coding agent it finds (Claude Code, Codex, Cursor, Gemini CLI, and OpenCode, which also reads Claude Code's folder). It clones the repo to `~/.open-3d-skills` and links the skills from there, so running it again updates them. From a clone you can choose:
 
 ```bash
 git clone https://github.com/Moh4696/open-3d-skills && cd open-3d-skills
@@ -128,7 +142,7 @@ Each skill is a plain folder with a `SKILL.md`, so any agent that supports Agent
 
 The skills are instructions; their scripts need:
 
-- **Node 22+** only to run the repo's own checks (`node tests/check.mjs`). The browser code has no build step.
+- **Node 22.20+** for `npx skills` and the repo's own checks. The browser code has no build step.
 - **Python 3.9+** with `pip install -r requirements.txt` (Playwright, Pillow, NumPy, OpenCV), then `python3 -m playwright install chromium webkit`.
 - **ffmpeg** on your PATH.
 - An image and video generation service (any) for `motion-assets`, `alpha-cutout`, `cursor-rig` and `scroll-film`. `threejs-scene`, `exploded-view`, `site-check` and `frame-capture` need none.
@@ -147,7 +161,7 @@ Code-built scenes are small, sharp at any size, free of licensing questions and 
 Yes. The modules are plain ES modules and the techniques are framework-free.
 
 **Can I install just one skill?**
-Yes: `./install.sh scroll-film`. Skills mention each other by name where they work together, but each one works alone.
+Yes: `npx skills add Moh4696/open-3d-skills --skill scroll-film`. Skills mention each other by name where they work together, but each one works alone.
 
 ## Works well with
 
