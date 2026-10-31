@@ -80,8 +80,11 @@ for (const rel of manifests) {
   if (j.logo && !existsSync(join(ROOT, j.logo))) fail(rel, `logo ${j.logo} does not exist`);
 }
 if (versions.size > 1) fail('manifests', `versions disagree: ${[...versions].join(', ')}`);
-const claudeSkills = JSON.parse(readFileSync(join(ROOT, '.claude-plugin/marketplace.json'), 'utf8')).plugins[0].skills.length;
-if (claudeSkills !== names.size) fail('.claude-plugin/marketplace.json', `lists ${claudeSkills} skills, the repo has ${names.size}`);
+// Claude Code already discovers skills/ under a plugin's source; listing them as well loads
+// every skill twice (seen in `claude plugin details`), so the entry must not list them
+for (const plugin of JSON.parse(readFileSync(join(ROOT, '.claude-plugin/marketplace.json'), 'utf8')).plugins) {
+  if (plugin.source === './' && plugin.skills) fail('.claude-plugin/marketplace.json', `plugin "${plugin.name}" lists skills that skills/ already provides; each would load twice`);
+}
 
 // scripts parse
 const files = walk(SKILLS);
