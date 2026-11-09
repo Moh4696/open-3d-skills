@@ -165,6 +165,7 @@ Yes: `npx skills add Moh4696/open-3d-skills --skill scroll-film`. Skills mention
 
 ## Works well with
 
+- [Cinematic Skill](https://github.com/Moh4696/cinematic-skill), from the same author: narrated cinematic films built entirely from code, with one continuous camera over photos, maps and cards, timed to the voice. It uses `motion-assets` from this repo when a film needs AI stills.
 - [Taste Skill](https://github.com/Leonxlnx/taste-skill) by Leonxlnx: art direction for the page around your 3D. It also inspired the layout of this repo.
 - [scroll-world](https://github.com/oso95/scroll-world) by oso95: Higgsfield fly-through worlds.
 - [Anatomy](https://github.com/wheresryan22/anatomy) by wheresryan22: isometric SVG explainer figures.
